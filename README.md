@@ -26,7 +26,7 @@ These PBQs are provided as simple HTML files.
 Just open the landing page in your web browser and you’re ready to go:
 
 1. Clone or download this repository.  
-2. Open the `index.html` file in your browser.  
+2. Open the `landingpage.html` file in your browser.  
 3. Explore and practice each PBQ.  
 
 ![CompTIA Security+ PBQ Practice — Mozilla Firefox 2025-09-27 21-12-20 mp4](https://github.com/user-attachments/assets/a0ec860c-9f5f-4d5e-be00-d5790474c470)
