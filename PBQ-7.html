@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Comptia Security+ PBQ – Resilience & Redundancy</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #00566e;
+    --accent: #6dbd46;
+    --background: #eef1f5;
+    --card-bg: #ffffff;
+    --text-dark: #2c3e50;
+  }
+
+  body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: var(--background);
+    color: var(--text-dark);
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: auto;
+  }
+
+  h1 {
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 30px;
+    animation: fadeIn 1s ease-in;
+  }
+.explanation-card {
+  background-color: var(--card-bg);
+  border-left: 5px solid var(--accent);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  margin-top: 20px;
+}
+  h2 {
+    color: var(--primary);
+  }
+
+  .scenario {
+    background-color: var(--card-bg);
+    border-left: 5px solid var(--accent);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    margin-bottom: 40px;
+  }
+
+  .image-section {
+    margin: 20px 0;
+    padding: 10px;
+    border: 2px dashed #bbb;
+    text-align: center;
+    color: #777;
+    font-style: italic;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+  }
+
+  .drag-item {
+    padding: 8px 12px;
+    margin: 5px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    display: inline-block;
+    cursor: grab;
+    position: relative;
+    border-radius: 5px;
+  }
+
+  .drop-zone {
+    border: 2px dashed #888;
+    min-height: 60px;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #fafafa;
+    border-radius: 8px;
+  }
+
+  .drop-zone h3 {
+    margin-top: 0;
+  }
+
+  .feedback {
+    font-weight: bold;
+    font-size: 0.9em;
+    position: absolute;
+    right: -70px;
+    top: 50%;
+    transform: translateY(-50%);
+    user-select: none;
+  }
+
+  .correct {
+    color: var(--accent);
+  }
+
+  .incorrect {
+    color: #e74c3c;
+  }
+
+  #available-options {
+    border: 1px solid #aaa;
+    padding: 10px;
+    margin-bottom: 40px;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+  }
+
+  .container-flex {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+    .logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 150px;
+    }
+
+    .logo img {
+      max-width: 100%;
+      height: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .logo img:hover {
+      transform: scale(1.05);
+    }
+  .zone-block {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  select, input[type="checkbox"] {
+    margin-top: 10px;
+  }
+
+  button {
+    background-color: var(--accent);
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-right: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  button:hover {
+    background-color: var(--primary);
+    transform: translateY(-2px);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @media (max-width: 768px) {
+    .container-flex {
+      flex-direction: column;
+    }
+  }
+
+    .button-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .button-container button {
+      margin: 0 10px;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Resiliency & Redundancy</h1>
+  <div class="container">
+    <div class="logo">
+      <img src="logo.png" alt="North Green Security Logo">
+    </div>
+  <div class="scenario">
+    <h2>Scenario</h2>
+    <p>
+      A healthcare software provider's current IT infrastructure struggles to keep up with increasing user demands, and its architecture limits the ability to quickly expand to support rapid company growth. Recently, slowdowns in the Electronic Health Record (EHR) and billing systems have significantly affected staff efficiency. Leadership has tasked you with recommending solutions to prevent such issues moving forward.
+    </p>
+    <p>
+      The company engaged a managed service provider (MSP) to redesign their infrastructure. The MSP suggested that the investment include a combination of multiple technologies. Furthermore, they emphasized the importance of power redundancy and enhanced backup resiliency. The MSP must communicate the advantages of their recommendations to the client and help decide which solution fits best.
+    </p>
+    <p>
+      Review the following two potential solutions and evaluate the strengths and weaknesses of each. The client has a budget of $250,000 for a solution that meets their requirements. Additionally, the MSP offers periodic testing services for the selected infrastructure.
+    </p>
+    <p><strong>Considerations:</strong></p>
+    <ul>
+      <li>Identify the best functions suited to each solution.</li>
+      <li>Outline the benefits and drawbacks of each.</li>
+      <li>Provide a recommendation for the most appropriate solution.</li>
+    </ul>
+  </div>
+<h2>Data Center Architecture</h2>
+<p>
+        <img src="7-1.png" style="display: block; margin: 0 auto; width: 700px; height: auto;">
+<p>
+<p>
+<h2>Cloud Architecture</h2>
+<p>
+        <img src="7-2.png" style="display: block; margin: 0 auto; width: 700px; height: auto;">
+
+  <div id="available-options" aria-label="Available options" role="list">
+    <h3>Available options</h3>
+    <div draggable="true" tabindex="0" class="drag-item" id="option1">server redundancy</div>
+    <div draggable="true" tabindex="0" class="drag-item" id="option2">less complex infrastructure</div>
+    <div draggable="true" tabindex="0" class="drag-item" id="option3">onsite backup</div>
+    <div draggable="true" tabindex="0" class="drag-item" id="option4">single vendor infrastructure</div>
+    <div draggable="true" tabindex="0" class="drag-item" id="option5">more resilient operations</div>
+    <div draggable="true" tabindex="0" class="drag-item" id="option6">multi-vendor infrastructure</div>
+    <div draggable="true" tabindex="0" class="drag-item" id="option7">price variations</div>
+    <div draggable="true" tabindex="0" class="drag-item" id="option8">more complex infrastructure</div>
+  </div>
+
+  <div class="container-flex">
+  
+    <div class="zone-block">
+      <h2>Data Center</h2>
+      <div class="drop-zone" id="dc-benefits" aria-label="Data Center Benefits" role="list">
+        <h3>Benefits</h3>
+      </div>
+      <div class="drop-zone" id="dc-drawbacks" aria-label="Data Center Drawbacks" role="list">
+        <h3>Drawbacks</h3>
+      </div>
+    </div>
+
+    <div class="zone-block">
+      <h2>Cloud Infrastructure</h2>
+      <div class="drop-zone" id="cloud-benefits" aria-label="Cloud Benefits" role="list">
+        <h3>Benefits</h3>
+      </div>
+      <div class="drop-zone" id="cloud-drawbacks" aria-label="Cloud Drawbacks" role="list">
+        <h3>Drawbacks</h3>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <label for="recommendation"><strong>Recommendation:</strong></label>
+    <select id="recommendation" aria-label="Select recommendation">
+      <option value="">Select an option</option>
+      <option value="Data Center">Data Center</option>
+      <option value="Cloud Infrastructure">Cloud Infrastructure</option>
+      <option value="Hybrid">Hybrid</option>
+    </select>
+  </div>
+
+  <div>
+    <fieldset>
+      <legend><strong>Requirements:</strong></legend>
+      <label><input type="checkbox" name="requirements" value="multiVendor" /> Multi-vendor support</label><br/>
+      <label><input type="checkbox" name="requirements" value="powerRedundancy" /> Power redundancy</label><br/>
+      <label><input type="checkbox" name="requirements" value="resilientBackups" /> Resilient backups</label><br/>
+      <label><input type="checkbox" name="requirements" value="highLatency" /> High latency tolerance</label><br/>
+    </fieldset>
+  </div>
+
+  <div style="margin-top: 20px;">
+    <div class="button-container">
+    <button id="submit-btn">Submit Answers</button>
+    <button id="show-correct-btn">Show Correct Answers</button>
+    <button type="button" class="reset-btn" onclick="resetForm()">Reset</button> 
+	<button type="button" onclick="showExplanation()">Explain Answers</button>
+  </div>
+      <div id="explanation" class="scenario-card explanation-card" style="display:none;">
+	  <div class="scenario-content"></div></div>
+</div>
+
+<script>
+  const correctAnswers = {
+    'dc-benefits': [
+      "server redundancy",
+      "less complex infrastructure"
+    ],
+    'dc-drawbacks': [
+      "onsite backup",
+      "single vendor infrastructure"
+    ],
+    'cloud-benefits': [
+      "more resilient operations",
+      "multi-vendor infrastructure"
+    ],
+    'cloud-drawbacks': [
+      "price variations",
+      "more complex infrastructure"
+    ],
+    recommendation: "Cloud Infrastructure",
+    requirements: [
+      "multiVendor",
+      "powerRedundancy",
+      "resilientBackups"
+    ]
+  };
+
+  let dragged = null;
+
+  document.querySelectorAll('.drag-item').forEach(item => {
+    item.addEventListener('dragstart', e => {
+      dragged = item;
+      e.dataTransfer.setData('text/plain', item.id);
+      setTimeout(() => item.style.display = 'none', 0);
+    });
+    item.addEventListener('dragend', e => {
+      dragged.style.display = 'inline-block';
+      dragged = null;
+    });
+  });
+
+  document.querySelectorAll('.drop-zone, #available-options').forEach(zone => {
+    zone.addEventListener('dragover', e => e.preventDefault());
+    zone.addEventListener('drop', e => {
+      e.preventDefault();
+      const id = e.dataTransfer.getData('text/plain');
+      const draggedEl = document.getElementById(id);
+      if (!draggedEl) return;
+
+      if (draggedEl.parentNode !== zone) {
+        clearFeedback(draggedEl);
+        zone.appendChild(draggedEl);
+      }
+    });
+  });
+
+  function clearFeedback(optionEl) {
+    const existingFeedback = optionEl.querySelector('.feedback');
+    if (existingFeedback) existingFeedback.remove();
+  }
+
+  function addFeedback(optionEl, isCorrect) {
+    clearFeedback(optionEl);
+    const fb = document.createElement('div');
+    fb.classList.add('feedback');
+    fb.classList.add(isCorrect ? 'correct' : 'incorrect');
+    fb.textContent = isCorrect ? '✔️ Correct' : '❌ Incorrect';
+    optionEl.appendChild(fb);
+  }
+
+  document.getElementById('submit-btn').addEventListener('click', () => {
+    document.querySelectorAll('.drag-item').forEach(optionEl => clearFeedback(optionEl));
+
+    ['dc-benefits', 'dc-drawbacks', 'cloud-benefits', 'cloud-drawbacks'].forEach(zoneId => {
+      const zone = document.getElementById(zoneId);
+      const correctSet = new Set(correctAnswers[zoneId]);
+      Array.from(zone.children).forEach(child => {
+        if (!child.classList.contains('drag-item')) return;
+        const text = child.textContent.replace(/✔️ Correct|❌ Incorrect/g, '').trim();
+        const isCorrect = correctSet.has(text);
+        addFeedback(child, isCorrect);
+      });
+    });
+
+    const recSelect = document.getElementById('recommendation');
+    const recFbId = 'rec-feedback';
+    let oldRecFb = document.getElementById(recFbId);
+    if (oldRecFb) oldRecFb.remove();
+
+    const recFb = document.createElement('div');
+    recFb.id = recFbId;
+    recFb.style.display = 'inline-block';
+    recFb.style.marginLeft = '10px';
+    if (recSelect.value === '') {
+      recFb.textContent = '❌ Please select an option';
+      recFb.style.color = 'red';
+    } else if (recSelect.value === correctAnswers.recommendation) {
+      recFb.textContent = '✔️ Correct';
+      recFb.style.color = 'green';
+    } else {
+      recFb.textContent = '❌ Incorrect';
+      recFb.style.color = 'red';
+    }
+    recSelect.parentNode.appendChild(recFb);
+
+    const reqChecks = document.querySelectorAll('input[name="requirements"]');
+    const correctReqs = new Set(correctAnswers.requirements);
+    reqChecks.forEach(cb => {
+      const oldFb = cb.parentNode.querySelector('.req-feedback');
+      if (oldFb) oldFb.remove();
+    });
+
+    reqChecks.forEach(cb => {
+      const fb = document.createElement('span');
+      fb.classList.add('req-feedback');
+      fb.style.marginLeft = '8px';
+      if (correctReqs.has(cb.value)) {
+        fb.textContent = cb.checked ? '✔️' : '❌ Required';
+        fb.style.color = cb.checked ? 'green' : 'red';
+      } else {
+        if (cb.checked) {
+          fb.textContent = '❌ Not needed';
+          fb.style.color = 'red';
+        }
+      }
+      cb.parentNode.appendChild(fb);
+    });
+  });
+
+  document.getElementById('show-correct-btn').addEventListener('click', () => {
+    const available = document.getElementById('available-options');
+    document.querySelectorAll('.drag-item').forEach(item => {
+      available.appendChild(item);
+      clearFeedback(item);
+    });
+
+    ['dc-benefits', 'dc-drawbacks', 'cloud-benefits', 'cloud-drawbacks'].forEach(zoneId => {
+      const zone = document.getElementById(zoneId);
+      correctAnswers[zoneId].forEach(ansText => {
+        const option = Array.from(available.children).find(c =>
+          c.classList.contains('drag-item') && c.textContent.trim() === ansText
+        );
+        if (option) {
+          zone.appendChild(option);
+          addFeedback(option, true);
+        }
+      });
+    });
+
+    const recSelect = document.getElementById('recommendation');
+    recSelect.value = correctAnswers.recommendation;
+
+    const reqChecks = document.querySelectorAll('input[name="requirements"]');
+    reqChecks.forEach(cb => {
+      cb.checked = correctAnswers.requirements.includes(cb.value);
+      const oldFb = cb.parentNode.querySelector('.req-feedback');
+      if (oldFb) oldFb.remove();
+      if (cb.checked) {
+        const fb = document.createElement('span');
+        fb.classList.add('req-feedback');
+        fb.style.marginLeft = '8px';
+        fb.textContent = '✔️';
+        fb.style.color = 'green';
+        cb.parentNode.appendChild(fb);
+      }
+    });
+
+    let oldRecFb = document.getElementById('rec-feedback');
+    if (oldRecFb) oldRecFb.remove();
+    const recFb = document.createElement('div');
+    recFb.id = 'rec-feedback';
+    recFb.style.display = 'inline-block';
+    recFb.style.marginLeft = '10px';
+    recFb.textContent = '✔️ Correct';
+    recFb.style.color = 'green';
+    recSelect.parentNode.appendChild(recFb);
+  });
+  
+  function resetForm() {
+  // Reset the recommendation dropdown
+  document.getElementById('recommendation').value = '';
+
+  // Clear feedback for the recommendation dropdown
+  const recFeedback = document.getElementById('rec-feedback');
+  if (recFeedback) {
+    recFeedback.remove();
+  }
+
+  // Uncheck all requirement checkboxes and clear their feedback
+  const reqChecks = document.querySelectorAll('input[name="requirements"]');
+  reqChecks.forEach(cb => {
+    cb.checked = false;
+    const feedback = cb.parentNode.querySelector('.req-feedback');
+    if (feedback) {
+      feedback.remove();
+    }
+  });
+
+  // Move all drag items back to the available options container and clear feedback
+  const availableOptions = document.getElementById('available-options');
+  document.querySelectorAll('.drag-item').forEach(item => {
+    clearFeedback(item);
+    availableOptions.appendChild(item);
+  });
+}
+
+// Helper function to clear feedback
+function clearFeedback(optionEl) {
+  const existingFeedback = optionEl.querySelector('.feedback');
+  if (existingFeedback) {
+    existingFeedback.remove();
+  }
+}
+
+function showExplanation(){
+  const exp=document.getElementById('explanation');
+  exp.style.display='block';
+  exp.innerHTML=`
+    <h2>Detailed Explanation</h2> <p><strong>Data Center Architecture:</strong></p> <ul> <li><strong>Benefits:</strong> Server redundancy ensures uptime through duplicate servers. Less complex infrastructure is easier to manage on-premises.</li> <li><strong>Drawbacks:</strong> Onsite backups require manual maintenance and physical space. Single vendor infrastructure limits flexibility and introduces vendor lock-in.</li> </ul> <p><strong>Cloud Architecture:</strong></p> <ul> <li><strong>Benefits:</strong> More resilient operations due to geo-redundancy, failover, and high availability. Multi-vendor infrastructure allows combining services, avoiding vendor lock-in.</li> <li><strong>Drawbacks:</strong> Price variations can occur with usage and storage. Infrastructure can be more complex to integrate.</li> </ul> <p><strong>Recommendation:</strong> <em>Cloud Infrastructure</em> is recommended because it offers scalable, resilient, and redundant systems that meet multi-vendor, power, and backup requirements. The slight increase in complexity and cost is offset by higher uptime and operational resilience.</p> <p><strong>Requirements Analysis:</strong></p> <ul> <li>Multi-vendor support ✅ – Cloud enables combining services from multiple providers.</li> <li>Power redundancy ✅ – Cloud data centers provide backup power and failover systems.</li> <li>Resilient backups ✅ – Cloud offers geo-redundant, automated backups.</li> <li>High latency ❌ – Not required; latency should be minimized.</li> </ul> <p><strong>Why other options are less appropriate:</strong> On-premises data centers are limited in scaling quickly, require manual backups, and can have vendor lock-in. Cloud solutions, despite slightly higher complexity and cost, best meet the client’s resilience and redundancy needs.</p>
+  `;
+}
+</script>
+
+</body>
+</html>

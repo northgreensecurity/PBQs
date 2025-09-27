@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Comptia Security+ PBQ – Remote Access Security</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .correct {
+      color: green;
+      font-weight: bold;
+    }
+    .incorrect {
+      color: red;
+      font-weight: bold;
+    }
+    .checkbox-feedback {
+      margin-left: 8px;
+      font-weight: bold;
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .button-container button {
+      margin: 0 10px;
+    }
+
+    /* Scenario card style */
+    .scenario-card {
+      background-color: #fff;
+      border-left: 5px solid #6dbd46;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 25px;
+      margin-bottom: 40px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    /* Special green border for explanation */
+    .explanation-card {
+      border-left-color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Remote Access Security</h1>
+  <div class="container">
+    <div class="logo">
+      <img src="logo.png" alt="North Green Security Logo">
+    </div>
+
+    <form id="pbq-form">
+
+      <div class="scenario-card">
+        <img src="6.png" style="display: block; margin: 0 auto; width: 700px; height: auto;">
+        <div class="scenario-content">
+          <h2>Scenario</h2>
+          <p>As the network administrator at a growing healthcare organization, you are tasked with improving the security of remote connections for staff accessing the company network from their personal devices. The organization requires a solution that supports a large number of simultaneous users securely and can scale easily without the complexity of managing multiple gateway points.</p>
+          <p>To comply with the company's new policy on remote access security, you are responsible for:</p>
+          <ul>
+            <li>Choosing a remote access technology that is widely trusted for its security and scalability in enterprise settings with heavy user traffic.</li>
+            <li>Establishing a user authentication scheme that mandates multi-factor verification and implementing device authentication based on asymmetric cryptography to confirm device identity through digital certificates.</li>
+            <li>Adding further authentication controls to strengthen the overall access process and protect sensitive healthcare data.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="scenario-card">
+        <div class="scenario-content">
+
+          <label for="remote-access-method">Select Remote Access Method</label>
+          <select id="remote-access-method" name="remote-access-method">
+            <option value="">-- Select --</option>
+            <option value="VPN">VPN</option>
+            <option value="SSH tunneling">SSH tunneling</option>
+            <option value="Direct access">Direct access</option>
+            <option value="RDP">RDP</option>
+          </select>
+          <div class="feedback" id="feedback-remote-access-method"></div>
+
+          <label for="user-authentication">Select User Authentication Method</label>
+          <select id="user-authentication" name="user-authentication">
+            <option value="">-- Select --</option>
+            <option value="IP allow list">IP allow list</option>
+            <option value="Username/password">Username/password</option>
+            <option value="MFA">MFA</option>
+            <option value="RBAC">RBAC</option>
+          </select>
+          <div class="feedback" id="feedback-user-authentication"></div>
+
+          <label for="device-authentication">Select Device Authentication Method</label>
+          <select id="device-authentication" name="device-authentication">
+            <option value="">-- Select --</option>
+            <option value="Certificate based">Certificate based</option>
+            <option value="Password based">Password based</option>
+            <option value="Kerberos authentication">Kerberos authentication</option>
+          </select>
+          <div class="feedback" id="feedback-device-authentication"></div>
+
+          <label>Identify the key security considerations for remote access that align with the company's guidelines</label>
+          <div class="checkbox-group" id="security-considerations">
+            <label><input type="checkbox" name="security-considerations" value="manual review of connection logs" /> Manual review of connection logs</label>
+            <label><input type="checkbox" name="security-considerations" value="allow connections from unregistered devices" /> Allow connections from unregistered devices</label>
+            <label><input type="checkbox" name="security-considerations" value="automated software updates" /> Automated software updates</label>
+            <label><input type="checkbox" name="security-considerations" value="endpoint security checks" /> Endpoint security checks</label>
+            <label><input type="checkbox" name="security-considerations" value="session timeout limits" /> Session timeout limits</label>
+            <label><input type="checkbox" name="security-considerations" value="data encryption at rest and in transit" /> Data encryption at rest and in transit</label>
+            <label><input type="checkbox" name="security-considerations" value="secure log monitoring" /> Secure log monitoring</label>
+            <label><input type="checkbox" name="security-considerations" value="automated alerts for unusual access" /> Automated alerts for unusual access</label>
+            <label><input type="checkbox" name="security-considerations" value="real time monitoring of active connections" /> Real time monitoring of active connections</label>
+          </div>
+          <div class="feedback" id="feedback-security-considerations"></div>
+
+        </div>
+      </div>
+
+      <div class="button-container">
+        <button type="button" class="submit-btn" onclick="validateAnswers()">Submit Answers</button>
+        <button type="button" class="show-btn" onclick="showCorrectAnswers()">Show Correct Answers</button>
+        <button type="button" class="reset-btn" onclick="resetForm()">Reset</button>
+        <button type="button" class="show-btn" onclick="showExplanation()">Explain Answers</button>
+      </div>
+
+      <!-- Explanation Card -->
+      <div id="explanation" class="scenario-card explanation-card" style="display:none;">
+	  <div class="scenario-content"></div></div>
+
+    </form>
+  </div>
+
+<script>
+  const correctAnswers = {
+    remoteAccessMethod: "VPN",
+    userAuthentication: "MFA",
+    deviceAuthentication: "Certificate based",
+    securityConsiderations: [
+      "automated software updates",
+      "endpoint security checks",
+      "session timeout limits",
+      "data encryption at rest and in transit",
+      "secure log monitoring",
+      "automated alerts for unusual access",
+      "real time monitoring of active connections"
+    ],
+    securityConsiderationsIncorrect: [
+      "manual review of connection logs",
+      "allow connections from unregistered devices"
+    ]
+  };
+
+  function validateAnswers() {
+    const remoteMethod = document.getElementById("remote-access-method").value;
+    const remoteFeedback = document.getElementById("feedback-remote-access-method");
+    remoteFeedback.textContent = remoteMethod === correctAnswers.remoteAccessMethod ? "✔️ Correct" : "❌ Incorrect";
+    remoteFeedback.className = "feedback " + (remoteMethod === correctAnswers.remoteAccessMethod ? "correct" : "incorrect");
+
+    const userAuth = document.getElementById("user-authentication").value;
+    const userFeedback = document.getElementById("feedback-user-authentication");
+    userFeedback.textContent = userAuth === correctAnswers.userAuthentication ? "✔️ Correct" : "❌ Incorrect";
+    userFeedback.className = "feedback " + (userAuth === correctAnswers.userAuthentication ? "correct" : "incorrect");
+
+    const deviceAuth = document.getElementById("device-authentication").value;
+    const deviceFeedback = document.getElementById("feedback-device-authentication");
+    deviceFeedback.textContent = deviceAuth === correctAnswers.deviceAuthentication ? "✔️ Correct" : "❌ Incorrect";
+    deviceFeedback.className = "feedback " + (deviceAuth === correctAnswers.deviceAuthentication ? "correct" : "incorrect");
+
+    const checkboxes = document.querySelectorAll('input[name="security-considerations"]');
+    const selected = Array.from(checkboxes).filter(cb => cb.checked).map(cb => cb.value);
+    const hasAllCorrect = correctAnswers.securityConsiderations.every(item => selected.includes(item));
+    const hasNoIncorrect = correctAnswers.securityConsiderationsIncorrect.every(item => !selected.includes(item));
+    const securityFeedback = document.getElementById("feedback-security-considerations");
+    securityFeedback.textContent = (hasAllCorrect && hasNoIncorrect) ? "✔️ Correct selection" : "❌ Incorrect selection";
+    securityFeedback.className = "feedback " + ((hasAllCorrect && hasNoIncorrect) ? "correct" : "incorrect");
+  }
+
+  function showCorrectAnswers() {
+    document.getElementById("remote-access-method").value = correctAnswers.remoteAccessMethod;
+    document.getElementById("feedback-remote-access-method").textContent = `✔️ Correct answer: ${correctAnswers.remoteAccessMethod}`;
+    document.getElementById("feedback-remote-access-method").className = "feedback correct";
+
+    document.getElementById("user-authentication").value = correctAnswers.userAuthentication;
+    document.getElementById("feedback-user-authentication").textContent = `✔️ Correct answer: ${correctAnswers.userAuthentication}`;
+    document.getElementById("feedback-user-authentication").className = "feedback correct";
+
+    document.getElementById("device-authentication").value = correctAnswers.deviceAuthentication;
+    document.getElementById("feedback-device-authentication").textContent = `✔️ Correct answer: ${correctAnswers.deviceAuthentication}`;
+    document.getElementById("feedback-device-authentication").className = "feedback correct";
+
+    const container = document.getElementById("security-considerations");
+    container.querySelectorAll(".checkbox-feedback").forEach(el => el.remove());
+    const checkboxes = container.querySelectorAll('input[name="security-considerations"]');
+    checkboxes.forEach(cb => {
+      const label = cb.parentElement;
+      label.classList.remove("correct", "incorrect");
+      const feedback = document.createElement("span");
+      feedback.classList.add("checkbox-feedback");
+      if (correctAnswers.securityConsiderations.includes(cb.value)) {
+        cb.checked = true;
+        feedback.textContent = " ✔️";
+        label.classList.add("correct");
+      } else {
+        cb.checked = false;
+        feedback.textContent = " ❌";
+        label.classList.add("incorrect");
+      }
+      label.appendChild(feedback);
+    });
+    document.getElementById("feedback-security-considerations").textContent = "";
+  }
+
+  function resetForm() {
+    const form = document.getElementById('pbq-form');
+    form.reset();
+    document.querySelectorAll('.feedback').forEach(div => { div.textContent = ''; div.className='feedback'; });
+    document.querySelectorAll('.checkbox-feedback').forEach(el => el.remove());
+    document.querySelectorAll('#security-considerations label').forEach(label => label.classList.remove('correct','incorrect'));
+    document.getElementById('explanation').style.display = 'none';
+  }
+
+  function showExplanation() {
+    const exp = document.getElementById('explanation');
+    exp.style.display = 'block';
+    exp.innerHTML = `
+      <strong>Detailed Explanation:</strong><br><br>
+      <strong>Remote Access Method:</strong> VPN is the preferred solution for secure, scalable remote access in enterprise environments. It allows many simultaneous users, encrypts traffic, and is widely supported.<br><br>
+      <strong>User Authentication:</strong> Multi-factor authentication (MFA) is required to strengthen user identity verification. Username/password alone is insufficient, and IP allow lists or RBAC do not replace strong authentication.<br><br>
+      <strong>Device Authentication:</strong> Certificate-based authentication ensures that only registered devices can connect. This uses asymmetric cryptography to verify device identity and prevent unauthorized devices from accessing sensitive healthcare data.<br><br>
+      <strong>Security Considerations:</strong>
+      <ul>
+        <li>Automated software updates: Ensures devices are patched against vulnerabilities.</li>
+        <li>Endpoint security checks: Confirms devices meet security policy before granting access.</li>
+        <li>Session timeout limits: Reduces risk if a session is left idle or abandoned.</li>
+        <li>Data encryption at rest and in transit: Protects sensitive healthcare information from interception or leakage.</li>
+        <li>Secure log monitoring: Detects suspicious activity in real time.</li>
+        <li>Automated alerts for unusual access: Provides proactive notification of potential security incidents.</li>
+        <li>Real-time monitoring of active connections: Helps detect anomalies and unauthorized access immediately.</li>
+      </ul>
+      <strong>Why other options are incorrect:</strong>
+      <ul>
+        <li>Manual review of connection logs: Not scalable for large enterprises and reactive instead of proactive.</li>
+        <li>Allow connections from unregistered devices: Violates policy and poses significant security risk.</li>
+      </ul>
+    `;
+  }
+</script>
+
+</body>
+</html>

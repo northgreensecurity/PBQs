@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Comptia Security+ PBQ – Access Control Model</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<style>
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #eef1f5;
+    color: #2c3e50;
+    margin: 20px;
+  }
+  h1 { text-align: center; color: #00566e; }
+  .container { max-width: 1000px; margin: auto; }
+  .scenario-card { background: #fff; border-left: 5px solid #6dbd46; border-radius: 12px; padding: 20px; margin-bottom: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);}
+  label { font-weight: bold; display: block; margin-top: 10px; }
+  select { width: 100%; padding: 8px; margin-top: 5px; border-radius: 5px; border: 1px solid #ccc; }
+  .feedback { margin-top: 5px; font-weight: bold; }
+  .correct { color: #6dbd46; }
+  .incorrect { color: #e74c3c; }
+  .button-container { text-align: center; margin-top: 20px; }
+  .button-container button { margin: 0 10px; background-color:#6dbd46; color:#fff; padding:10px 20px; border:none; border-radius:5px; cursor:pointer; }
+  .button-container button:hover { background-color:#00566e; }
+  table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+  th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
+  #explanation { display: none; background: #fff; border-left: 5px solid #6dbd46; padding: 15px; margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="logo">
+    <img src="logo.png" alt="North Green Security Logo" style="width:150px;">
+  </div>
+
+  <h1>Access Control Configuration</h1>
+
+  <form id="access-form">
+
+    <div class="scenario-card">
+      <h2>Scenario Overview</h2>
+      <p>
+        A former administrator misused owner-level permissions to upload inappropriate content targeting the CEO. 
+        To prevent similar incidents, the organization is revising its access control model. 
+        You are tasked with assigning proper access methods, security roles, and authentication methods for four groups: 
+        Administrators, Developers, Finance, and Clients.
+      </p>
+      <p>Guidance for decisions:</p>
+      <ul>
+        <li>Admins must have temporary elevated privileges only (just-in-time access).</li>
+        <li>Internal staff (Admins, Developers, Finance) may use MFA.</li>
+		<li>Developers typically use a Linux Operating System so connect using the command line.</li>
+		<li>The Finance team typically work from home</li>
+        <li>Clients need authentication but cannot use MFA.</li>
+        <li>Access must follow least privilege using role-based access control (RBAC).</li>
+      </ul>
+    </div>
+
+    <!-- MCQs -->
+    <div class="scenario-card">
+      <label for="question1">1. What could you implement to secure the authentication process?</label>
+      <select id="question1">
+        <option value="">-- Select --</option>
+        <option value="MFA">MFA</option>
+        <option value="RBAC">RBAC</option>
+        <option value="Firewall Rules">Firewall Rules</option>
+      </select>
+      <div class="feedback" id="feedback-question1"></div>
+
+      <label for="question2">2. What principle should be enforced to ensure minimal permissions for all users?</label>
+      <select id="question2">
+        <option value="">-- Select --</option>
+        <option value="Principle of least privilege">Principle of least privilege</option>
+        <option value="Job rotation">Job rotation</option>
+        <option value="Mandatory vacation">Mandatory vacation</option>
+      </select>
+      <div class="feedback" id="feedback-question2"></div>
+    </div>
+
+    <!-- Role Matrix Table -->
+    <div class="scenario-card">
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Administrator</th>
+            <th>Developer</th>
+            <th>Finance</th>
+            <th>Client</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Access Method</strong></td>
+            <td><select id="admin-access">
+              <option value="">-- Select --</option>
+              <option value="Just-in-time Access">Just-in-time Access</option>
+              <option value="Always-on VPN">Always-on VPN</option>
+              <option value="Public Guest Portal">Public Guest Portal</option>
+            </select><div class="feedback" id="feedback-admin-access"></div></td>
+
+            <td><select id="dev-access">
+              <option value="">-- Select --</option>
+              <option value="SSH over VPN">SSH over VPN</option>
+              <option value="Just-in-time Access">Just-in-time Access</option>
+              <option value="Public Guest Portal">Public Guest Portal</option>
+            </select><div class="feedback" id="feedback-dev-access"></div></td>
+
+            <td><select id="finance-access">
+              <option value="">-- Select --</option>
+              <option value="VPN Client">VPN Client</option>
+              <option value="Direct LAN Access">Direct LAN Access</option>
+              <option value="Public Guest Portal">Public Guest Portal</option>
+            </select><div class="feedback" id="feedback-finance-access"></div></td>
+
+            <td><select id="client-access">
+              <option value="">-- Select --</option>
+              <option value="Public Web Access">Public Web Access</option>
+              <option value="VPN Client">VPN Client</option>
+              <option value="Admin Console">Admin Console</option>
+            </select><div class="feedback" id="feedback-client-access"></div></td>
+          </tr>
+
+          <tr>
+            <td><strong>Security Role</strong></td>
+            <td><select id="admin-role">
+              <option value="">-- Select --</option>
+              <option value="Management Role">Management Role</option>
+              <option value="Guest Role">Guest Role</option>
+              <option value="Read-only Role">Read-only Role</option>
+            </select><div class="feedback" id="feedback-admin-role"></div></td>
+
+            <td><select id="dev-role">
+              <option value="">-- Select --</option>
+              <option value="Developer Role">Developer Role</option>
+              <option value="Management Role">Management Role</option>
+              <option value="Client Role">Client Role</option>
+            </select><div class="feedback" id="feedback-dev-role"></div></td>
+
+            <td><select id="finance-role">
+              <option value="">-- Select --</option>
+              <option value="Read-only Role">Read-only Role</option>
+              <option value="Finance Role">Finance Role</option>
+              <option value="Developer Role">Developer Role</option>
+            </select><div class="feedback" id="feedback-finance-role"></div></td>
+
+            <td><select id="client-role">
+              <option value="">-- Select --</option>
+              <option value="Guest Role">Guest Role</option>
+              <option value="Admin Role">Admin Role</option>
+              <option value="Finance Role">Finance Role</option>
+            </select><div class="feedback" id="feedback-client-role"></div></td>
+          </tr>
+
+          <tr>
+            <td><strong>Authentication Method</strong></td>
+            <td><select id="admin-auth">
+              <option value="">-- Select --</option>
+              <option value="Password Vaulting">Password Vaulting</option>
+              <option value="Certificate Authentication">Certificate Authentication</option>
+              <option value="Biometric Login">Biometric Login</option>
+            </select><div class="feedback" id="feedback-admin-auth"></div></td>
+
+            <td><select id="dev-auth">
+              <option value="">-- Select --</option>
+              <option value="MFA with Password">MFA with Password</option>
+              <option value="Token-based Access">Token-based Access</option>
+              <option value="Single Sign-On (SSO)">Single Sign-On (SSO)</option>
+            </select><div class="feedback" id="feedback-dev-auth"></div></td>
+
+            <td><select id="finance-auth">
+              <option value="">-- Select --</option>
+              <option value="MFA with Password">MFA with Password</option>
+              <option value="Password Only">Password Only</option>
+              <option value="Smart Card">Smart Card</option>
+            </select><div class="feedback" id="feedback-finance-auth"></div></td>
+
+            <td><select id="client-auth">
+              <option value="">-- Select --</option>
+              <option value="Password Only">Password Only</option>
+              <option value="MFA with Password">MFA with Password</option>
+              <option value="Biometric Login">Biometric Login</option>
+            </select><div class="feedback" id="feedback-client-auth"></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="button-container">
+      <button type="button" id="submit-btn">Submit Answers</button>
+      <button type="button" id="show-answers-btn">Show Correct Answers</button>
+      <button type="button" onclick="resetForm()">Reset</button>
+      <button type="button" onclick="showExplanation()">Explain Answers</button>
+    </div>
+
+    <div id="explanation"></div>
+  </form>
+</div>
+
+<script>
+  const correctAnswers = {
+    question1: "MFA",
+    question2: "Principle of least privilege",
+    "admin-access": "Just-in-time Access",
+    "dev-access": "SSH over VPN",
+    "finance-access": "VPN Client",
+    "client-access": "Public Web Access",
+    "admin-role": "Management Role",
+    "dev-role": "Developer Role",
+    "finance-role": "Finance Role",
+    "client-role": "Guest Role",
+    "admin-auth": "Password Vaulting",
+    "dev-auth": "MFA with Password",
+    "finance-auth": "MFA with Password",
+    "client-auth": "Password Only"
+  };
+
+  function showFeedback(id, isCorrect, correct) {
+    const f = document.getElementById('feedback-' + id);
+    if (isCorrect) { f.textContent = `✔️ Correct answer: ${correct}`; f.className='feedback correct'; }
+    else { f.textContent = `❌ Incorrect. `; f.className='feedback incorrect'; }
+  }
+
+  function clearFeedback() {
+    document.querySelectorAll('.feedback').forEach(f=>{f.textContent=''; f.className='feedback';});
+  }
+
+  function validateAnswers() {
+    clearFeedback();
+    for (let id in correctAnswers) {
+      const val = document.getElementById(id).value;
+      showFeedback(id, val===correctAnswers[id], correctAnswers[id]);
+    }
+  }
+
+  function showAllAnswers() {
+  for (let id in correctAnswers) {
+    document.getElementById(id).value = correctAnswers[id];
+    showFeedback(id, true, correctAnswers[id]);
+  }
+  }
+
+  function resetForm() {
+    document.getElementById('access-form').reset();
+    document.getElementById('explanation').style.display='none';
+    clearFeedback();
+  }
+
+  function showExplanation() {
+  const exp = document.getElementById('explanation');
+  exp.style.display = 'block';
+  exp.innerHTML = `<strong>Detailed Explanation:</strong><br><br>
+    <ul>
+        <li><strong>MFA (Multi-Factor Authentication):</strong> This adds an extra layer of security beyond just a password. Internal staff such as Admins, Developers, and Finance should use MFA to reduce the risk of unauthorized access. Clients are restricted to password-only authentication as per the scenario.</li>
+        <li><strong>Principle of Least Privilege:</strong> This principle ensures that users only have the access they need to perform their job functions. Admins are given temporary elevated access (just-in-time access) instead of standing privileges, which prevents abuse of admin rights.</li>
+    </ul>
+
+    <strong>Access Methods:</strong><br>
+    <ul>
+        <li><strong>Administrators:</strong> Just-in-time Access allows temporary elevated privileges only when needed, reducing the risk of misuse.</li>
+        <li><strong>Developers:</strong> SSH over VPN is appropriate because developers often work on Linux systems remotely and need secure command-line access.</li>
+        <li><strong>Finance:</strong> VPN Client ensures secure remote access, especially when working from home, protecting sensitive financial data.</li>
+        <li><strong>Clients:</strong> Public Web Access is sufficient as they only need access to public resources, and MFA is not required.</li>
+    </ul>
+
+    <strong>Security Roles:</strong><br>
+    <ul>
+        <li><strong>Administrators:</strong> Management Role, providing oversight and elevated privileges temporarily.</li>
+        <li><strong>Developers:</strong> Developer Role, which grants access needed for development tasks without admin rights.</li>
+        <li><strong>Finance:</strong> Finance Role, granting permissions needed for financial operations but limited otherwise.</li>
+        <li><strong>Clients:</strong> Guest Role, granting minimal access to public resources only.</li>
+    </ul>
+
+    <strong>Authentication Methods:</strong><br>
+    <ul>
+        <li><strong>Administrators:</strong> Password Vaulting allows secure storage of temporary admin credentials and reduces password reuse risk.</li>
+        <li><strong>Developers & Finance:</strong> MFA with Password adds a second factor, ensuring stronger authentication for internal staff.</li>
+        <li><strong>Clients:</strong> Password Only is used because MFA is not allowed for clients; this still requires authentication but is simpler.</li>
+    </ul>
+
+    <strong>Key Takeaways:</strong>
+    <ul>
+        <li>Always follow the principle of least privilege: users only get the access they need.</li>
+        <li>Use RBAC to simplify permission management and reduce risk of misuse.</li>
+        <li>Choose access methods and authentication based on user type, device, and risk level.</li>
+    </ul>`;
+}
+
+
+  document.getElementById('submit-btn').addEventListener('click', validateAnswers);
+  document.getElementById('show-answers-btn').addEventListener('click', showAllAnswers);
+</script>
+
+</body>
+</html>

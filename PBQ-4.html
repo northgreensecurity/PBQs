@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Comptia Security+ PBQ – Certificates & CAs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #00566e;
+      --accent: #6dbd46;
+      --background: #eef1f5;
+      --card-bg: #ffffff;
+      --text-dark: #2c3e50;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: var(--background);
+      color: var(--text-dark);
+    }
+
+    h1 {
+      color: var(--primary);
+      text-align: center;
+      margin-bottom: 30px;
+      animation: fadeIn 1s ease-in;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .scenario-card {
+      background-color: var(--card-bg);
+      border-left: 5px solid var(--accent);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      margin-bottom: 40px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .scenario-card:hover {
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      margin-top: 5px;
+      transition: border-color 0.3s ease;
+    }
+
+    select:focus {
+      border-color: var(--accent);
+      outline: none;
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-width: 400px;
+      margin-top: 5px;
+    }
+
+    .checkbox-group label {
+      font-weight: normal;
+      margin-top: 0;
+      cursor: pointer;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .correct {
+      color: var(--accent);
+    }
+
+    .incorrect {
+      color: #e74c3c;
+    }
+
+    .submit-btn, .reset-btn, .show-btn {
+      background-color: var(--accent);
+      color: #fff;
+      padding: 12px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      display: inline-block;
+      margin: 10px 10px 30px 0;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-btn:hover, .reset-btn:hover, .show-btn:hover {
+      background-color: var(--primary);
+    }
+
+    .logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 150px;
+    }
+
+    .logo img {
+      max-width: 100%;
+      height: auto;
+      transition: transform 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .button-container button {
+      margin: 0 10px;
+    }
+
+    #explanation {
+      background: #fff;
+      border-left: 5px solid var(--accent);
+      padding: 15px;
+      margin-top: 20px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="logo.png" alt="North Green Security Logo">
+    </div>
+
+    <h1>Certificates & Certificate Authorities</h1>
+
+    <form id="cert-form">
+      <div class="scenario-card">
+        <div class="scenario-content">
+          <h2>Scenario Overview</h2>
+          <p>Certificates require careful management to maintain confidentiality, integrity, and availability of systems. As a privileged engineer, your task is to troubleshoot certificate-related issues reported by users, ensuring organizational systems remain secure and operational. You will analyze user feedback, identify common certificate problems, and recommend practical solutions.</p>
+        </div>
+      </div>
+
+      <!-- Scenario 1 -->
+      <div class="scenario-card">
+        <img src="4-1.png" style="display:block; margin:0 auto; width:500px; height:auto;">
+        <div class="scenario-content">
+          <h2>Scenario 1</h2>
+          <p><strong>Accounting Intern:</strong> I'm trying to access a website by typing its IP address in the browser, but I get a certificate warning. Why is this happening and what is the best way to fix it?</p>
+
+          <label for="sc1-issue">Most Likely Cause</label>
+          <select id="sc1-issue">
+            <option value="">-- Select --</option>
+            <option value="Cert bound to FQDN">Certificate is issued to the website's full domain name (FQDN), not the IP address</option>
+            <option value="Expired cert">Certificate has expired</option>
+            <option value="Revoked cert">Certificate has been revoked</option>
+            <option value="Self-signed cert">Certificate is self-signed and untrusted</option>
+          </select>
+          <div class="feedback" id="feedback1-issue"></div>
+
+          <label for="sc1-solution">Recommended Action</label>
+          <select id="sc1-solution">
+            <option value="">-- Select --</option>
+            <option value="Use full domain name">Access the website using its full domain name (FQDN) instead of the IP address</option>
+            <option value="Update cert">Request an updated certificate</option>
+            <option value="Ignore warning">Ignore the warning and proceed</option>
+            <option value="Install cert">Install the certificate manually</option>
+          </select>
+          <div class="feedback" id="feedback1-solution"></div>
+        </div>
+      </div>
+
+      <!-- Scenario 2 -->
+      <div class="scenario-card">
+        <img src="4-2.png" style="display:block; margin:0 auto; width:500px; height:auto;">
+        <div class="scenario-content">
+          <h2>Scenario 2</h2>
+           <p><strong>Marketing Manager:</strong> I just finished creating a new website for the companyand have configured the layout, pages, and the certificate on the server. Everything looks correct on the server, but I’m still seeing certificate errors when i try to connect. Could the problem be due to my local system, and what steps should I take to resolve it?</p>
+
+          <label for="sc2-issue">Most Likely Client-Side Issue</label>
+          <select id="sc2-issue">
+            <option value="">-- Select --</option>
+            <option value="Missing chain">Client lacks the necessary intermediate or root certificates (chain of trust incomplete)</option>
+            <option value="Expired client cert">Client certificate expired</option>
+            <option value="Incorrect client time">Client system time incorrect</option>
+            <option value="Browser bug">Browser compatibility issue</option>
+          </select>
+          <div class="feedback" id="feedback2-issue"></div>
+
+          <label>Suggested Actions (Select all that apply)</label>
+          <div class="checkbox-group" id="sc2-actions">
+            <label><input type="checkbox" id="sc2-action-http" value="Connect via HTTP" /> Connect using HTTP instead of HTTPS</label>
+            <label><input type="checkbox" id="sc2-action-restart" value="Restart computer" /> Restart the computer to reload certificates</label>
+            <label><input type="checkbox" id="sc2-action-ip" value="Connect via IP" /> Connect using the server IP address</label>
+            <label><input type="checkbox" id="sc2-action-fqdn" value="Connect via FQDN" /> Connect using full domain name (FQDN)</label>
+            <label><input type="checkbox" id="sc2-action-install-root" value="Install root certificate" /> Install missing root or intermediate certificates</label>
+          </div>
+          <div class="feedback" id="feedback2-actions"></div>
+        </div>
+      </div>
+
+      <div class="button-container">
+        <button type="button" class="submit-btn" onclick="validateAnswers()">Submit Answers</button>
+        <button type="button" class="show-btn" onclick="showCorrectAnswers()">Show Correct Answers</button>
+        <button type="button" class="reset-btn" onclick="resetForm()">Reset</button>
+        <button type="button" class="show-btn" onclick="showExplanation()">Explain Answers</button>
+      </div>
+
+      <div id="explanation"></div>
+    </form>
+
+  </div>
+
+  <script>
+    const answers = {
+      1: {
+        issue: "Cert bound to FQDN",
+        solution: "Use full domain name"
+      },
+      2: {
+        issue: "Missing chain",
+        actions: ["Connect via FQDN", "Install root certificate"]
+      }
+    };
+
+    function validateAnswers() {
+      checkSelectAnswer(1, "issue", answers[1].issue);
+      checkSelectAnswer(1, "solution", answers[1].solution);
+      checkSelectAnswer(2, "issue", answers[2].issue);
+      checkCheckboxAnswers();
+    }
+
+    function checkSelectAnswer(scenarioNum, part, correctAnswer) {
+      const select = document.getElementById(`sc${scenarioNum}-${part}`);
+      const feedback = document.getElementById(`feedback${scenarioNum}-${part}`);
+      if (!select.value) {
+        feedback.textContent = "Please select an option.";
+        feedback.className = "feedback incorrect";
+        return;
+      }
+      if (select.value === correctAnswer) {
+        feedback.textContent = "✔️ Correct!";
+        feedback.className = "feedback correct";
+      } else {
+        feedback.textContent = "❌ Incorrect.";
+        feedback.className = "feedback incorrect";
+      }
+    }
+
+    function checkCheckboxAnswers() {
+      const feedback = document.getElementById("feedback2-actions");
+      const checked = [];
+      const checkboxes = document.querySelectorAll("#sc2-actions input[type=checkbox]");
+      checkboxes.forEach(cb => { if (cb.checked) checked.push(cb.value); });
+
+      if (checked.length === 0) {
+        feedback.textContent = "Please select at least one action.";
+        feedback.className = "feedback incorrect";
+        return;
+      }
+
+      const correct = answers[2].actions.sort();
+      const selected = checked.sort();
+      const isCorrect = correct.length === selected.length && correct.every((val, index) => val === selected[index]);
+
+      if (isCorrect) {
+        feedback.textContent = "✔️ Correct!";
+        feedback.className = "feedback correct";
+      } else {
+        feedback.textContent = "❌ Incorrect.";
+        feedback.className = "feedback incorrect";
+      }
+    }
+
+    function showCorrectAnswers() {
+      document.getElementById("sc1-issue").value = answers[1].issue;
+      document.getElementById("sc1-solution").value = answers[1].solution;
+      document.getElementById("feedback1-issue").textContent = "Correct answer";
+      document.getElementById("feedback1-issue").className = "feedback correct";
+      document.getElementById("feedback1-solution").textContent = "Correct answer";
+      document.getElementById("feedback1-solution").className = "feedback correct";
+
+      document.getElementById("sc2-issue").value = answers[2].issue;
+      document.getElementById("feedback2-issue").textContent = "Correct answer";
+      document.getElementById("feedback2-issue").className = "feedback correct";
+
+      const checkboxes = document.querySelectorAll("#sc2-actions input[type=checkbox]");
+      checkboxes.forEach(cb => { cb.checked = answers[2].actions.includes(cb.value); });
+      document.getElementById("feedback2-actions").textContent = "Correct answers";
+      document.getElementById("feedback2-actions").className = "feedback correct";
+    }
+
+    function resetForm() {
+      const form = document.getElementById('cert-form');
+      form.reset();
+      document.querySelectorAll('.feedback').forEach(div => {
+        div.textContent = '';
+        div.className = 'feedback';
+      });
+      document.getElementById('explanation').style.display = 'none';
+      document.getElementById('explanation').innerHTML = '';
+    }
+
+    function showExplanation() {
+  const explanationDiv = document.getElementById('explanation');
+  explanationDiv.style.display = 'block';
+  explanationDiv.innerHTML = `<strong>Explanation:</strong><br>
+  <strong>Scenario 1:</strong> Certificate warnings occur when the URL does not match the certificate’s FQDN. IP addresses do not match the domain name in certificates, triggering browser warnings. The correct solution is to access the site using the full domain name.<br><br>
+  <strong>Scenario 2:</strong> The Marketing Manager has just finished launching a new website. Client systems may not have the necessary root or intermediate certificates to validate the server’s certificate. The correct actions are to connect using the FQDN and install any missing root/intermediate certificates. Restarting the computer is not necessary, and connecting via HTTP or IP will not resolve the certificate validation issue.`;
+}
+
+  </script>
+</body>
+</html>

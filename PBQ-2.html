@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Comptia Security+ PBQ – Social Engineering</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #00566e;
+      --accent: #6dbd46;
+      --background: #eef1f5;
+      --card-bg: #ffffff;
+      --text-dark: #2c3e50;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: var(--background);
+      color: var(--text-dark);
+    }
+
+    h1 {
+      color: var(--primary);
+      text-align: center;
+      margin-bottom: 30px;
+      animation: fadeIn 1s ease-in;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 150px;
+      height: auto;
+    }
+
+    .logo img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .logo img:hover {
+      transform: scale(1.05);
+    }
+
+    .scenario-card {
+      background-color: var(--card-bg);
+      border-left: 5px solid var(--accent);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      margin-bottom: 20px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .scenario-card:hover {
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .scenario-content h2 {
+      color: var(--primary);
+      margin-top: 0;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
+
+    .select-group {
+      display: flex;
+      align-items: center;
+      margin-top: 5px;
+      gap: 10px;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .correct {
+      color: var(--accent);
+    }
+
+    .incorrect {
+      color: #e74c3c;
+    }
+
+    .submit-btn,
+    .reset-btn,
+    .show-btn {
+      background-color: var(--accent);
+      color: #fff;
+      padding: 12px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 10px 10px 30px 0;
+    }
+
+    .submit-btn:hover,
+    .reset-btn:hover,
+    .show-btn:hover {
+      background-color: var(--primary);
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .explanation {
+      display: none;
+      background: #f7f9fb;
+      border-left: 5px solid var(--accent);
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 40px;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 14px;
+      color: #888;
+      margin-top: 50px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="logo.png" alt="North Green Security Logo">
+    </div>
+
+    <h1>Social Engineering Techniques</h1>
+
+    <form id="pbq-form">
+      <div class="scenario-card">
+        <div class="scenario-content">
+          <h2>Scenario</h2>
+          <p>You are a security support specialist for a large shipping and logistics company. Review each helpdesk ticket, then choose the best classification, tactic, and mitigation from the dropdowns.</p>
+        </div>
+      </div>
+
+      <!-- Ticket 1 -->
+      <div class="scenario-card">
+        <img src="2-1.png" style="display:block;margin:0 auto;width:500px;height:auto;">
+        <div class="scenario-content">
+          <h2>Ticket 1</h2>
+          <p>A user received a convincing email from a supposed business partner referencing the CEO, urging them to review and respond to an attached document. The user opened the attachment and submitted sensitive financial details. The email was later flagged as suspicious, originating from stuart@s3curec0nsultants.com. However the name of the vendor is SecureConsultants.</p>
+
+          <label>Diagnosis</label>
+          <div class="select-group">
+            <select id="sc1-category">
+              <option value="">-- Select --</option>
+              <option value="Phishing">Phishing</option>
+              <option value="Whaling">Whaling</option>
+              <option value="Smishing">Smishing</option>
+              <option value="Vishing">Vishing</option>
+            </select>
+            <span class="feedback" id="feedback1-category"></span>
+          </div>
+
+          <label>Adversary Tactic</label>
+          <div class="select-group">
+            <select id="sc1-function">
+              <option value="">-- Select --</option>
+              <option value="Familiarity">Familiarity</option>
+              <option value="Urgency">Urgency</option>
+              <option value="Authority">Authority</option>
+            </select>
+            <span class="feedback" id="feedback1-function"></span>
+          </div>
+
+          <label>Mitigation</label>
+          <div class="select-group">
+            <select id="sc1-control">
+              <option value="">-- Select --</option>
+              <option value="Security awareness training">Security awareness training</option>
+              <option value="Email filtering">Email filtering</option>
+              <option value="Multifactor authentication">Multifactor authentication</option>
+            </select>
+            <span class="feedback" id="feedback1-control"></span>
+          </div>
+        </div>
+      </div>
+      <div id="explanation1" class="explanation">
+         <strong>Explanation:</strong> In ticket 1, the user received a convincing email from a supposed business partner referencing the CEO. This is a classic phishing attack, as the attacker tricked the user into opening an attachment and submitting sensitive financial details. The adversary used familiarity tactics by referencing the CEO and urgency by asking the user to act quickly. IT later identified the email as suspicious, coming from stuart@s3curec0nsultants.com. Mitigation should focus on <b>email filtering</b> to reduce the risk of personnel responding to phishing attempts in the future.
+      </div>
+
+<!-- Ticket 2 (Whaling) -->
+<div class="scenario-card">
+  <img src="2-2.png" style="display:block;margin:0 auto;width:500px;height:auto;">
+  <div class="scenario-content">
+    <h2>Ticket 2</h2>
+    <p>The CFO received an email from the IT department. This email claimed that the CFO's laptop was triggering alerts suggesting malware was trying to steal company data. They were given a link to immediately update their antivirus; however, later the computer started redirecting their browser to strange websites and showing popups.</p>
+
+    <label>Diagnosis</label>
+    <div class="select-group">
+      <select id="sc2-category">
+        <option value="">-- Select --</option>
+        <option value="Whaling">Whaling</option>
+        <option value="Phishing">Phishing</option>
+        <option value="Vishing">Vishing</option>
+        <option value="Smishing">Smishing</option>
+      </select>
+      <span class="feedback" id="feedback2-category"></span>
+    </div>
+
+    <label>Adversary Tactic</label>
+    <div class="select-group">
+      <select id="sc2-function">
+        <option value="">-- Select --</option>
+        <option value="Authority">Authority</option>
+        <option value="Urgency">Urgency</option>
+        <option value="Familiarity">Familiarity</option>
+      </select>
+      <span class="feedback" id="feedback2-function"></span>
+    </div>
+
+    <label>Mitigation</label>
+    <div class="select-group">
+      <select id="sc2-control">
+        <option value="">-- Select --</option>
+        <option value="Security awareness training">Security awareness training</option>
+        <option value="Verification procedures">Verification procedures</option>
+        <option value="Email filtering">Email filtering</option>
+      </select>
+      <span class="feedback" id="feedback2-control"></span>
+    </div>
+  </div>
+</div>
+
+<div id="explanation2" class="explanation" style="display:none;">
+  <strong>Explanation:</strong> In ticket 2, the CFO received an email claiming that their laptop was triggering malware alerts and that they needed to update antivirus software immediately. This is a <b>Whaling</b> attack, targeting an executive. The adversary used an <b>urgency</b> tactic to make the CFO act without verifying the request. IT observed browser redirects and pop-ups after following the link. Mitigation should focus on <b>security awareness training</b> for executives to make sure they understand these tactics are used to trick them into making bad decisions
+</div>
+
+      <!-- Ticket 3 (Caller ID mitigation) -->
+      <div class="scenario-card">
+        <img src="2-3.png" style="display:block;margin:0 auto;width:500px;height:auto;">
+        <div class="scenario-content">
+          <h2>Ticket 3</h2>
+          <p>A new employee received a call from someone claiming to be an executive, frustrated over a missing fax. They asked the employee to send an internal document immediately and provided their details</p>
+
+          <label>Diagnosis</label>
+          <div class="select-group">
+            <select id="sc3-category">
+              <option value="">-- Select --</option>
+              <option value="Vishing">Vishing</option>
+              <option value="Whaling">Whaling</option>
+              <option value="Phishing">Phishing</option>
+            </select>
+            <span class="feedback" id="feedback3-category"></span>
+          </div>
+
+          <label>Adversary Tactic</label>
+          <div class="select-group">
+            <select id="sc3-function">
+              <option value="">-- Select --</option>
+              <option value="Authority">Authority</option>
+              <option value="Urgency">Urgency</option>
+              <option value="Familiarity">Familiarity</option>
+            </select>
+            <span class="feedback" id="feedback3-function"></span>
+          </div>
+
+          <label>Mitigation</label>
+          <div class="select-group">
+            <select id="sc3-control">
+              <option value="">-- Select --</option>
+              <option value="Caller ID verification">Caller ID verification</option>
+              <option value="Security awareness training">Security awareness training</option>
+              <option value="Call-back procedures">Call-back procedures</option>
+            </select>
+            <span class="feedback" id="feedback3-control"></span>
+          </div>
+        </div>
+      </div>
+      <div id="explanation3" class="explanation">
+         <strong>Explanation:</strong> In ticket 3, a new employee received a call from someone claiming to be an executive. The caller instructed the employee to send a document immediately, creating a sense of <b>authority</b> and <b>urgency</b>. The employee complied and system issues occurred afterward. This is a <b>Vishing</b> attack. IT noted that the attack could have been prevented by verifying the caller’s identity. Mitigation includes <b>caller ID verification</b>  to ensure personnel are trained to validate requests before taking action.
+      </div>
+
+      <div class="button-container">
+        <button type="button" class="submit-btn" onclick="validateAnswers()">Submit Answers</button>
+        <button type="button" class="show-btn" onclick="showCorrectAnswers()">Show Correct Answers</button>
+        <button type="button" class="reset-btn" onclick="resetForm()">Reset</button>
+        <button type="button" class="show-btn" id="explainBtn" onclick="toggleAllExplanations()">Explain</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const answers = {
+      1: { category: "Phishing", function: "Familiarity", control: "Email filtering" },
+      2: { category: "Whaling", function: "Urgency", control: "Security awareness training" },
+      3: { category: "Vishing", function: "Authority", control: "Caller ID verification" }
+    };
+
+    function validateAnswers() {
+      for (let i = 1; i <= 3; i++) {
+        checkAnswerSimple(i, "category", answers[i].category);
+        checkAnswerSimple(i, "function", answers[i].function);
+        checkAnswerSimple(i, "control", answers[i].control);
+      }
+    }
+
+    function checkAnswerSimple(scenarioNumber, part, correctAnswer) {
+      const userAnswer = document.getElementById(`sc${scenarioNumber}-${part}`).value;
+      const feedbackDiv = document.getElementById(`feedback${scenarioNumber}-${part}`);
+
+      if (userAnswer === correctAnswer) {
+        feedbackDiv.textContent = "✅ Correct";
+        feedbackDiv.className = "feedback correct";
+      } else {
+        feedbackDiv.textContent = "❌ Incorrect";
+        feedbackDiv.className = "feedback incorrect";
+      }
+    }
+
+    function showCorrectAnswers() {
+      for (let i = 1; i <= 3; i++) {
+        document.getElementById(`sc${i}-category`).value = answers[i].category;
+        document.getElementById(`sc${i}-function`).value = answers[i].function;
+        document.getElementById(`sc${i}-control`).value = answers[i].control;
+
+        document.getElementById(`feedback${i}-category`).textContent = `✔️ Correct answer: ${answers[i].category}`;
+        document.getElementById(`feedback${i}-category`).className = "feedback correct";
+
+        document.getElementById(`feedback${i}-function`).textContent = `✔️ Correct answer: ${answers[i].function}`;
+        document.getElementById(`feedback${i}-function`).className = "feedback correct";
+
+        document.getElementById(`feedback${i}-control`).textContent = `✔️ Correct answer: ${answers[i].control}`;
+        document.getElementById(`feedback${i}-control`).className = "feedback correct";
+      }
+    }
+
+    function resetForm() {
+      document.getElementById('pbq-form').reset();
+      document.querySelectorAll('.feedback').forEach(div => {
+        div.textContent = '';
+        div.className = 'feedback';
+      });
+      document.querySelectorAll('.explanation').forEach(div => {
+        div.style.display = 'none';
+      });
+      document.getElementById('explainBtn').textContent = 'Explain';
+    }
+
+    function toggleAllExplanations() {
+      const explanations = document.querySelectorAll('.explanation');
+      const btn = document.getElementById('explainBtn');
+      let anyHidden = false;
+
+      explanations.forEach(div => {
+        if (div.style.display === "none" || div.style.display === "") {
+          anyHidden = true;
+        }
+      });
+
+      explanations.forEach(div => {
+        div.style.display = anyHidden ? "block" : "none";
+      });
+
+      btn.textContent = anyHidden ? "Hide Explanation" : "Explain";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CompTIA Security+ PBQ Practice</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #00566e;
+      --accent: #6dbd46;
+      --background: #eef1f5;
+      --card-bg: #ffffff;
+      --text-dark: #2c3e50;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: var(--background);
+      color: var(--text-dark);
+    }
+
+    h1 {
+      color: var(--primary);
+      text-align: center;
+      margin-bottom: 30px;
+      animation: fadeIn 1s ease-in;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      max-width: 150px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo img:hover {
+      transform: scale(1.05);
+    }
+
+    .scenario-card {
+      background-color: var(--card-bg);
+      border-left: 5px solid var(--accent);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      margin-bottom: 40px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .scenario-card:hover {
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .scenario-card h2 {
+      color: var(--primary);
+      margin-top: 0;
+    }
+
+    .pbq-list {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .pbq-list li {
+      margin-bottom: 12px;
+    }
+
+    .pbq-list li a {
+      display: block;
+      background-color: var(--accent);
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    .pbq-list li a:hover {
+      background-color: var(--primary);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 14px;
+      color: #888;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+      .scenario-card {
+        padding: 15px;
+      }
+    }
+	  .logo {
+    position: absolute;  /* or fixed, depending on needs */
+    top: 20px;           /* distance from top */
+    left: 20px;          /* distance from left */
+    /* optional: size and spacing */
+    width: 150px;
+    height: auto;
+  }
+  .logo img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="logo.png" alt="North Green Security Logo">
+    </div>
+    <h1>CompTIA Security+ PBQ Practice</h1>
+    <div class="scenario-card">
+      <p>Welcome! The CompTIA Security+ exam includes Performance-Based Questions (PBQs) that test your practical skills in real-world scenarios. This web app provides a chance to practice the style of these hands-on questions, helping you prepare effectively. Use the links below to explore each PBQ scenario and sharpen your abilities. Good luck!</p>
+	  <p>
+      <ul class="pbq-list">
+        <li><a href="PBQ-1.html">PBQ 1: Compare & Contrast Security Controls and Frameworks</a></li>
+        <li><a href="PBQ-2.html">PBQ 2: Social Engineering Techniques</a></li>
+        <li><a href="PBQ-3.html">PBQ 3: Identify Cryptographic Modes of Operation</a></li>
+        <li><a href="PBQ-4.html">PBQ 4: Using Certificates & Certificate Authorities</a></li>
+        <li><a href="PBQ-5.html">PBQ 5: Access Control Models</a></li>
+        <li><a href="PBQ-6.html">PBQ 6: Implement Secure Remote Access Protocols</a></li>
+        <li><a href="PBQ-7.html">PBQ 7: Redundancy Strategies</a></li>
+        <li><a href="PBQ-8.html">PBQ 8: Identifying Types of Vulnerabilities</a></li>
+        <li><a href="more.html">Want More Support?</a></li>
+        
+      </ul>
+    </div>
+    <footer>
+      &copy; 2025 North Green Security. All rights reserved.
+    </footer>
+  </div>
+</body>
+</html>

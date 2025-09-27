@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Comptia Security+ PBQ – Web Server Misconfiguration</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 20px;
+      background-color: #eef1f5;
+      color: #2c3e50;
+    }
+
+    h1 {
+      color: #00566e;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .logo img {
+      max-width: 150px;
+      margin-bottom: 20px;
+    }
+
+    .scenario-card {
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      margin-bottom: 40px;
+    }
+
+    .task-block {
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .answer-label {
+      display: block;
+      margin: 0.5rem 0;
+      cursor: pointer;
+    }
+
+    .feedback {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .correct {
+      color: #6dbd46;
+    }
+
+    .incorrect {
+      color: #e74c3c;
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .button-container button {
+      margin: 0 10px;
+      background-color: #6dbd46;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .button-container button:hover {
+      background-color: #00566e;
+    }
+
+    /* Explanation card */
+    #explanation {
+      display: none;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-top: 30px;
+    }
+
+    #explanation h2 {
+      color: #00566e;
+      margin-top: 0;
+    }
+
+    #explanation ul {
+      margin-top: 5px;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="logo">
+    <img src="logo.png" alt="North Green Security Logo">
+  </div>
+
+  <h1>Web Server Misconfiguration</h1>
+
+  <div class="scenario-card">
+    <img src="8.png" style="display: block; margin: 0 auto; width: 500px; height: auto;">
+    <h2>Scenario</h2>
+    <p>You are a security analyst working for a growing online retail company. Recently, the support team received complaints that users were unable to complete their purchases. A system administrator quickly restored functionality by disabling several security mechanisms on the company’s web server during troubleshooting. Now that the issue is resolved, your task is to identify what security settings need restoring, improve server protection, and implement safeguards to avoid future mishandlings.</p>
+  </div>
+
+  <div class="scenario-card">
+    <!-- Task Sections Start -->
+    <div class="task-block" id="task1">
+      <label>1. Which actions should the analyst take to re-establish core security protections on the server?</label>
+      <label class="answer-label"><input type="checkbox" value="re-enable firewall" /> Re-enable firewall</label>
+      <label class="answer-label"><input type="checkbox" value="revert to HTTPS from HTTP" /> Revert to HTTPS from HTTP</label>
+      <label class="answer-label"><input type="checkbox" value="reenable IDS" /> Re-enable intrusion detection system</label>
+      <label class="answer-label"><input type="checkbox" value="rotate keys" /> Rotate encryption keys</label>
+      <label class="answer-label"><input type="checkbox" value="update AV" /> Update antivirus definitions</label>
+      <div class="feedback" id="feedback1"></div>
+    </div>
+
+    <div class="task-block" id="task2">
+      <label>2. What steps should be implemented to strengthen access controls on the web server?</label>
+      <label class="answer-label"><input type="checkbox" value="enforce passwords" /> Enforce strict password policies</label>
+      <label class="answer-label"><input type="checkbox" value="whitelist IPs" /> Set up a whitelist of IP addresses for admin panel</label>
+      <label class="answer-label"><input type="checkbox" value="RBAC" /> Implement role-based access control</label>
+      <label class="answer-label"><input type="checkbox" value="review permissions" /> Review and update access permissions regularly</label>
+      <label class="answer-label"><input type="checkbox" value="segment network" /> Implement network segmentation</label>
+      <div class="feedback" id="feedback2"></div>
+    </div>
+
+    <div class="task-block" id="task3">
+      <label>3. How should the analyst audit and document the configuration changes made to the server?</label>
+      <label class="answer-label"><input type="checkbox" value="review logs" /> Review logs to identify changes</label>
+      <label class="answer-label"><input type="checkbox" value="pen test" /> Conduct penetration testing</label>
+      <label class="answer-label"><input type="checkbox" value="change log" /> Document detailed change log and rationale</label>
+      <label class="answer-label"><input type="checkbox" value="baseline comparison" /> Compare current configuration with known good baseline</label>
+      <label class="answer-label"><input type="checkbox" value="risk assessment" /> Perform a risk assessment</label>
+      <div class="feedback" id="feedback3"></div>
+    </div>
+
+    <div class="task-block" id="task4">
+      <label>4. What proactive steps should the company take to reduce the chance of similar issues in the future?</label>
+      <label class="answer-label"><input type="checkbox" value="change mgmt" /> Implement a change management process</label>
+      <label class="answer-label"><input type="checkbox" value="backups" /> Conduct regular data backups</label>
+      <label class="answer-label"><input type="checkbox" value="IR plan" /> Establish incident response plan</label>
+      <label class="answer-label"><input type="checkbox" value="training" /> Enforce regular training for support staff</label>
+      <label class="answer-label"><input type="checkbox" value="config mgmt" /> Implement configuration management</label>
+      <div class="feedback" id="feedback4"></div>
+    </div>
+    <!-- Task Sections End -->
+  </div>
+
+  <div class="button-container">
+    <button type="button" onclick="validateCheckboxAnswers()">Submit Answers</button>
+    <button type="button" onclick="showCorrectCheckboxAnswers()">Show Correct Answers</button>
+    <button type="button" onclick="resetForm()">Reset</button>
+    <button type="button" onclick="showExplanation()">Explain Answers</button>
+  </div>
+
+  <div id="explanation">
+    <h2>Detailed Explanation</h2>
+
+      <p><strong>1. Restoring Core Security Protections</strong></p>
+  <ul>
+    <li><strong>Correct Answers (ticked):</strong> Re-enable firewall, re-enable intrusion detection system (IDS), revert to HTTPS from HTTP
+      <ul>
+        <li><strong>Firewall:</strong> Primary line of defense against unauthorized access.</li>
+        <li><strong>IDS:</strong> Helps detect and respond to malicious activity.</li>
+        <li><strong>HTTPS:</strong> Ensures encryption of communications and protects sensitive data.</li>
+      </ul>
+    </li>
+    <li><strong>Unticked Answers:</strong> Update antivirus definitions, rotate encryption keys
+      <ul>
+        <li>Important for general security but do not restore the specific protections disabled during troubleshooting.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <p><strong>2. Strengthening Access Controls</strong></p>
+  <ul>
+    <li><strong>Correct Answers (ticked):</strong> Enforce strict password policies, implement role-based access control (RBAC), set up an allow list (whitelist) of IPs for the admin panel
+      <ul>
+        <li>Ensures only authorized individuals can access the system with appropriate permissions.</li>
+      </ul>
+    </li>
+    <li><strong>Unticked Answers:</strong> Regularly review and update access permissions, implement network segmentation
+      <ul>
+        <li>Best practices but not immediately required for post-incident access control on the affected server.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <p><strong>3. Auditing and Documenting Changes</strong></p>
+  <ul>
+    <li><strong>Correct Answers (ticked):</strong> Review logs to identify changes, compare current configuration with a known baseline, document a detailed change log and rationale
+      <ul>
+        <li>Helps the analyst track what changed during troubleshooting and creates an auditable record.</li>
+      </ul>
+    </li>
+    <li><strong>Unticked Answers:</strong> Conduct penetration testing, perform a risk assessment
+      <ul>
+        <li>Valuable for overall security but not immediate steps for documenting changes during troubleshooting.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <p><strong>4. Proactive Steps to Prevent Future Issues</strong></p>
+  <ul>
+    <li><strong>Correct Answers (ticked):</strong> Implement a change management process, enforce regular training for support staff, implement configuration management
+      <ul>
+        <li>Prevents accidental misconfigurations by ensuring systematic, documented changes and trained staff.</li>
+      </ul>
+    </li>
+    <li><strong>Unticked Answers:</strong> Conduct regular data backups, establish an incident response plan
+      <ul>
+        <li>Important for disaster recovery and incident response but do not prevent misconfigurations during troubleshooting.</li>
+      </ul>
+    </li>
+  </ul>
+</div>
+</div>
+
+<script>
+  const checkboxAnswers = {
+    1: ["re-enable firewall", "revert to HTTPS from HTTP", "reenable IDS"],
+    2: ["enforce passwords", "whitelist IPs", "RBAC"],
+    3: ["review logs", "change log", "baseline comparison"],
+    4: ["change mgmt", "training", "config mgmt"]
+  };
+
+  function validateCheckboxAnswers() {
+    for (let i = 1; i <= 4; i++) {
+      const task = document.getElementById(`task${i}`);
+      const checkboxes = task.querySelectorAll('input[type="checkbox"]');
+      const feedback = document.getElementById(`feedback${i}`);
+      const correctAnswers = checkboxAnswers[i];
+
+      let allCorrect = true;
+
+      checkboxes.forEach(cb => {
+        const label = cb.parentElement;
+        label.classList.remove('correct', 'incorrect');
+
+        if (cb.checked) {
+          if (correctAnswers.includes(cb.value)) {
+            label.classList.add('correct');
+          } else {
+            label.classList.add('incorrect');
+            allCorrect = false;
+          }
+        } else {
+          if (correctAnswers.includes(cb.value)) {
+            allCorrect = false;
+          }
+        }
+      });
+
+      feedback.textContent = allCorrect ? "✔️ Correct" : "❌ Some answers are incorrect or missing.";
+      feedback.className = `feedback ${allCorrect ? 'correct' : 'incorrect'}`;
+    }
+  }
+
+  function showCorrectCheckboxAnswers() {
+    for (let i = 1; i <= 4; i++) {
+      const task = document.getElementById(`task${i}`);
+      const checkboxes = task.querySelectorAll('input[type="checkbox"]');
+      const feedback = document.getElementById(`feedback${i}`);
+      const correctAnswers = checkboxAnswers[i];
+
+      checkboxes.forEach(cb => {
+        const label = cb.parentElement;
+        cb.checked = correctAnswers.includes(cb.value);
+        label.classList.remove('incorrect');
+        if (cb.checked) label.classList.add('correct');
+        else label.classList.remove('correct');
+      });
+
+      feedback.textContent = "✔️ Correct answers shown.";
+      feedback.className = "feedback correct";
+    }
+  }
+
+  function resetForm() {
+    for (let i = 1; i <= 4; i++) {
+      const task = document.getElementById(`task${i}`);
+      const checkboxes = task.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach(cb => {
+        cb.checked = false;
+        cb.parentElement.classList.remove('correct', 'incorrect');
+      });
+      const feedback = document.getElementById(`feedback${i}`);
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+    }
+    document.getElementById('explanation').style.display = 'none';
+  }
+
+  function showExplanation() {
+    document.getElementById('explanation').style.display = 'block';
+    document.getElementById('explanation').scrollIntoView({ behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>

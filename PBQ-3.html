@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Comptia Security+ PBQ – Cryptographic Modes of Operation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #00566e;
+      --accent: #6dbd46;
+      --background: #eef1f5;
+      --card-bg: #ffffff;
+      --text-dark: #2c3e50;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: var(--background);
+      color: var(--text-dark);
+    }
+
+    h1 {
+      color: var(--primary);
+      text-align: center;
+      margin-bottom: 30px;
+      animation: fadeIn 1s ease-in;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 150px;
+    }
+
+    .logo img {
+      max-width: 100%;
+      height: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .logo img:hover {
+      transform: scale(1.05);
+    }
+
+    .scenario-card {
+      background-color: var(--card-bg);
+      border-left: 5px solid var(--accent);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      margin-bottom: 40px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .scenario-card:hover {
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .scenario-content h2 {
+      color: var(--primary);
+      margin-top: 0;
+    }
+
+    label {
+      font-weight: 500;
+      display: block;
+      margin-top: 15px;
+    }
+
+    .select-group {
+      display: flex;
+      align-items: center;
+      margin-top: 5px;
+      gap: 10px;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      transition: border-color 0.3s ease;
+    }
+
+    select:focus {
+      border-color: var(--accent);
+      outline: none;
+    }
+
+    .feedback-icon {
+      font-size: 20px;
+      width: 24px;
+      text-align: center;
+      user-select: none;
+    }
+
+    .correct {
+      color: var(--accent);
+    }
+
+    .incorrect {
+      color: #e74c3c;
+    }
+
+    .submit-btn,
+    .reset-btn,
+    .show-btn {
+      background-color: var(--accent);
+      color: #fff;
+      padding: 12px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      display: inline-block;
+      margin: 10px 10px 30px 0;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-btn:hover,
+    .reset-btn:hover,
+    .show-btn:hover {
+      background-color: var(--primary);
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .button-container button {
+      margin: 0 10px;
+    }
+
+    #explanation {
+      background: #fff;
+      border-left: 5px solid var(--accent);
+      padding: 15px;
+      margin-top: 20px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="logo.png" alt="North Green Security Logo">
+    </div>
+
+    <h1>Cryptographic Modes of Operation</h1>
+
+    <form id="pbq-form">
+      <!-- Scenario Intro -->
+      <div class="scenario-card">
+        <div class="scenario-content">
+          <h2>Scenario</h2>
+          <p>The head of IT wants employees to send messages reliably with integrity and authenticity using hashing and digital signatures.</p>
+          <p><strong>Company Requirements:</strong></p>
+          <ul>
+            <li>Recipients should validate the sender's identity</li>
+            <li>Recipients should verify message authenticity</li>
+            <li>The process should be efficient and practical</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- PBQ Steps -->
+      <div class="scenario-card">
+        <div class="scenario-content">
+          <img src="3.png" style="display:block; margin:0 auto; width:700px; height:auto;">
+          <h2>Verifying Message Authenticity</h2>
+          <p><strong>System Admin:</strong> Charles and Dan use digital signatures to ensure message authenticity and integrity. Complete the process below.</p>
+
+          <label for="step1">1. Charles prepares the message and first...</label>
+          <div class="select-group">
+            <select id="step1">
+              <option value="">-- Select --</option>
+              <option value="Hashes the message contents">Hashes the message contents</option>
+              <option value="Applies symmetric encryption">Applies symmetric encryption</option>
+              <option value="Encodes the message in Base64">Encodes the message in Base64</option>
+            </select>
+            <span id="feedback-step1" class="feedback-icon"></span>
+          </div>
+
+          <label for="step2">2. Charles uses his private key to...</label>
+          <div class="select-group">
+            <select id="step2">
+              <option value="">-- Select --</option>
+              <option value="Sign the hashed message">Sign the hashed message</option>
+              <option value="Decrypt the message">Decrypt the message</option>
+              <option value="Encrypt the entire message">Encrypt the entire message</option>
+            </select>
+            <span id="feedback-step2" class="feedback-icon"></span>
+          </div>
+
+          <label for="step3">3. Charles sends the message along with...</label>
+          <div class="select-group">
+            <select id="step3">
+              <option value="">-- Select --</option>
+              <option value="The original message and the digital signature">The original message and the digital signature</option>
+              <option value="The encrypted hash and his password">The encrypted hash and his password</option>
+              <option value="The public key and encrypted message">The public key and encrypted message</option>
+            </select>
+            <span id="feedback-step3" class="feedback-icon"></span>
+          </div>
+
+          <label for="step4">4. Dan receives the message and uses Charles' public key to...</label>
+          <div class="select-group">
+            <select id="step4">
+              <option value="">-- Select --</option>
+              <option value="Verify the digital signature">Verify the digital signature</option>
+              <option value="Encrypt the received message">Encrypt the received message</option>
+              <option value="Hash the message again">Hash the message again</option>
+            </select>
+            <span id="feedback-step4" class="feedback-icon"></span>
+          </div>
+
+          <label for="step5">5. Dan hashes the received message and...</label>
+          <div class="select-group">
+            <select id="step5">
+              <option value="">-- Select --</option>
+              <option value="Compares it to the original hash">Compares it to the original hash</option>
+              <option value="Sends it to a certificate authority">Sends it to a certificate authority</option>
+              <option value="Encrypts it with his own private key">Encrypts it with his own private key</option>
+            </select>
+            <span id="feedback-step5" class="feedback-icon"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="button-container">
+        <button type="button" class="submit-btn" onclick="validateAnswers()">Submit Answers</button>
+        <button type="button" class="show-btn" onclick="showCorrectAnswers()">Show Correct Answers</button>
+        <button type="button" class="reset-btn" onclick="resetForm()">Reset</button>
+        <button type="button" class="show-btn" onclick="showExplanation()">Explain Answers</button>
+      </div>
+
+      <!-- Explanation -->
+      <div id="explanation"></div>
+    </form>
+  </div>
+
+  <script>
+    const correctAnswers = {
+      step1: "Hashes the message contents",
+      step2: "Sign the hashed message",
+      step3: "The original message and the digital signature",
+      step4: "Verify the digital signature",
+      step5: "Compares it to the original hash"
+    };
+
+    function validateAnswers() {
+      let allAnswered = true;
+      for (const step in correctAnswers) {
+        const select = document.getElementById(step);
+        const feedback = document.getElementById('feedback-' + step);
+        if (!select.value) {
+          feedback.textContent = '⚠';
+          feedback.className = 'feedback-icon incorrect';
+          allAnswered = false;
+        } else if (select.value === correctAnswers[step]) {
+          feedback.textContent = '✔️';
+          feedback.className = 'feedback-icon correct';
+        } else {
+          feedback.textContent = '❌';
+          feedback.className = 'feedback-icon incorrect';
+        }
+      }
+      if (!allAnswered) alert("Please answer all questions before submitting.");
+    }
+
+    function showCorrectAnswers() {
+      for (const step in correctAnswers) {
+        const select = document.getElementById(step);
+        const feedback = document.getElementById('feedback-' + step);
+        select.value = correctAnswers[step];
+        feedback.textContent = '✔️';
+        feedback.className = 'feedback-icon correct';
+      }
+    }
+
+    function resetForm() {
+      document.getElementById('pbq-form').reset();
+      document.querySelectorAll('.feedback-icon').forEach(icon => {
+        icon.textContent = '';
+        icon.className = 'feedback-icon';
+      });
+      document.getElementById('explanation').style.display = 'none';
+      document.getElementById('explanation').innerHTML = '';
+    }
+
+    function showExplanation() {
+      const explanationDiv = document.getElementById('explanation');
+      explanationDiv.style.display = 'block';
+      explanationDiv.innerHTML = `<strong>Explanation:</strong><br>
+      <p><strong>Step 1:</strong> Charles hashes the message contents. Hashing creates a fixed-length, unique representation of the message. This ensures any modification of the message will result in a different hash, allowing integrity verification.</p>
+    <p><strong>Step 2:</strong> Charles signs the hashed message using his private key. This action produces a digital signature, which proves that Charles, and only Charles, could have created this signature, providing sender authenticity.</p>
+    <p><strong>Step 3:</strong> Charles sends both the original message and the digital signature to Dan. The message is needed for reading, and the digital signature is needed for verification of integrity and authenticity.</p>
+    <p><strong>Step 4:</strong> Dan uses Charles’ public key to verify the digital signature. The public key allows Dan to confirm that the signature matches the hash of the message and was generated by Charles’ private key, confirming both authenticity and integrity.</p>
+    <p><strong>Step 5:</strong> Dan hashes the received message and compares it to the hash contained in the digital signature. If the hashes match, the message has not been altered in transit. This final step ensures integrity and that the message can be trusted.</p>
+    <p><strong>Summary:</strong> This process ensures that messages are both authentic and intact. Hashing checks for message integrity, the digital signature confirms the sender’s identity, and using public/private keys allows secure verification without exposing private keys.</p>`;
+    }
+  </script>
+</body>
+</html>
